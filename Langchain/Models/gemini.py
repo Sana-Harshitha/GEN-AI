@@ -42,7 +42,7 @@ try:
         "Explain RAG in 3 simple sentences."
     )
 
-    print(response.content)
+    print(response.text)
     print(f"\nResponse time: {time.time() - start:.2f} seconds")
 
 except Exception as e:

@@ -23,6 +23,7 @@ prompt_template=PromptTemplate(
     
     ),
     input_variables=["paper_input", "style_input", "length_input"],
+    validate_template=True,
 )
 
 print("--- Research Paper Summarizer ---")
@@ -32,18 +33,20 @@ paper_input = input("Enter the research paper name (e.g., Attention Is All You N
 style_input = input("Enter the explanation style (e.g., Code Heavy, Math Heavy, Simple and Intuitive): ")
 length_input = input("Enter the summary length (e.g., Short, Medium, Long): ")
 
-# 4. Fill the template with user inputs
-formatted_prompt = prompt_template.format(
-    paper_input=paper_input,
-    style_input=style_input,
-    length_input=length_input
-)
+# 2. Use .invoke() by passing a dictionary of inputs
+prompt_value = prompt_template.invoke({
+    "paper_input": "Attention Is All You Need",
+    "style_input": "Code Heavy",
+    "length_input": "Medium"
+})
 
 print("\nGenerating summary, please wait...\n")
 
-# 5. Invoke the model with the formatted prompt
-result = model.invoke(formatted_prompt)
 
-# 6. Display the output content
+
+# 5. Invoke the model with the formatted prompt
+result = model.invoke(prompt_value)
+
+#  6. Display the output content
 print("--- Summary Output ---")
 print(result.text)

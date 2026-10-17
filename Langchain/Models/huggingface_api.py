@@ -1,5 +1,4 @@
 
-# DONT DOWNLOAD 
 
 from dotenv import load_dotenv
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
@@ -7,9 +6,10 @@ from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 load_dotenv()
 
 llm = HuggingFaceEndpoint(
-    repo_id="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    repo_id="HuggingFaceH4/zephyr-7b-beta",
     task="text-generation",
     max_new_tokens=100,
+    provider="auto",
     timeout=60,
 )
 
@@ -23,8 +23,3 @@ try:
 
 except Exception as e:
     print(f"Error: {e}")
-
-
-
-
-    
